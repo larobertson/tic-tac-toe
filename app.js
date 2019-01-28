@@ -1,25 +1,15 @@
-
-//each turn, starting with player x
-//turn on the game position, 1 for player x, 0 for player 0
-//if one line is complete, player wins
-//entire column
-//entire row
-//diagonal
-//if position !null, then it cannot be played
-
 let turn = true;
 let player = "X";
 
-let gameField = [[null, null, null], [null, null, null], [null, null, null]]
+let gameField = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 let mapToField = (player, id) => {
   let row = Number(id[1]) - 1;
   let col = Number(id[3]) - 1;
   gameField[row].splice(col, 1, player);
-  gameOver();
+  gameStatus(gameField);
 }
 
-//make a list of clicked elements:
 let clicked = [];
 
 let renderToDom = (elementId) => {
@@ -28,9 +18,9 @@ let renderToDom = (elementId) => {
     } else {
         clicked.push(elementId);
         if(turn) {
-            player = "X";
+            player = 'X';
         } else {
-            player = "O";
+            player = 'O';
         }
         document.getElementById(elementId).innerHTML = player;
         turn = !turn;
@@ -39,10 +29,31 @@ let renderToDom = (elementId) => {
     }
 }
 
-let gameOver = () => {
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+//Check for Winner
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+let checkRows = (row) => {
+    console.log(row[0] === 'X', row[1] === 'X', row[2] === 'X');
+    if(row[0] === 'X' && row[1] === 'X' && row[2] === 'X') {
+         alert('X Wins!');
+         location.reload()
+    } else if (row[0] === 'O' && row[1] === 'O' && row[2] === 'O'){
+        alert('O Wins!');
+        location.reload();
+    }
+}
+
+let gameStatus = (gameField) => {
   //loop through gameField
   //if entire row, column, diagonal = X || O stop game
   //map to true
+  for (let row of gameField) {
+    checkRows(row);
+  }
+
 }
 
 
