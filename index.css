@@ -1,0 +1,27 @@
+.content {
+    align-content: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+    width: 20%;
+    height: 20%;
+}
+
+button {
+    align-content: center;
+    padding: 10px;
+}
+
+.button {
+    padding: 10px;
+    width: 100%;
+    align-content: center;
+}
+
+th, td {
+    padding: 30px;
+}
+
+/* I will make this prettier toward the end of the sprint
+but first Javascript! */
