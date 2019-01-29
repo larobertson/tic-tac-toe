@@ -24,7 +24,7 @@ let renderToDom = (elementId) => {
         }
         document.getElementById(elementId).innerHTML = player;
         turn = !turn;
-        //still need to map to game array
+        
         mapToField(player, elementId);
     }
 }
@@ -46,20 +46,45 @@ let checkRows = (row) => {
     }
 }
 
+let checkColumn = (gameField) => {
+  if(gameField[0][0] === 'X' && gameField[1][0] === 'X' && gameField[2][0] === 'X') {
+      alert('X Wins!');
+  } else if (gameField[0][1] === 'X' && gameField[1][1] === 'X' && gameField[2][1] === 'X') {
+      alert('X Wins!')
+  } else if (gameField[0][2] === 'X' && gameField[1][2] === 'X' && gameField[2][2] === 'X') {
+    alert('X Wins!')
+  }
+  if(gameField[0][0] === 'O' && gameField[1][0] === 'O' && gameField[2][0] === 'O') {
+    alert('O Wins!');
+  } else if (gameField[0][1] === 'O' && gameField[1][1] === 'O' && gameField[2][1] === 'O') {
+    alert('O Wins!')
+  } else if (gameField[0][2] === 'O' && gameField[1][2] === 'O' && gameField[2][2] === 'O') {
+    alert('O Wins!')
+  }
+}
+
+let checkDiagonal = (gameField) => {
+    if(gameField[0][0] === 'X' && gameField[1][1] === 'X' && gameField[2][2] === 'X') {
+        alert('X Wins!');
+    } else if (gameField[2][0] === 'X' && gameField[1][1] === 'X' && gameField[0][2] === 'X') {
+        alert('X Wins!')
+    }
+    if(gameField[0][0] === 'O' && gameField[1][1] === 'O' && gameField[2][2] === 'O') {
+      alert('O Wins!');
+    } else if (gameField[2][0] === 'O' && gameField[1][1] === 'O' && gameField[0][2] === 'O') {
+      alert('O Wins!')
+    } 
+  }
+
 let gameStatus = (gameField) => {
-  //loop through gameField
-  //if entire row, column, diagonal = X || O stop game
-  //map to true
+  checkColumn(gameField);
+  checkDiagonal(gameField);
   for (let row of gameField) {
     checkRows(row);
   }
 
 }
 
-
-
-
-//somewhere down here I want a reset game button
 let reset = document.getElementById("reset")
 reset.addEventListener("click", () => {
     location.reload();
